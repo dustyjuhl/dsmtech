@@ -1,0 +1,44 @@
+<div class="app-container">
+  <div class="top-header">
+    <div class="sidebar-section" [class.collapsed]="!isExpanded">
+      <button mat-icon-button (click)="toggleSidebar()" class="menu-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span *ngIf="isExpanded" class="sidebar-title">Menu</span>
+    </div>
+    <div class="main-section">
+      <span class="app-title">DSM Tech Community</span>
+    </div>
+  </div>
+  
+  <div class="body-container">
+    <div class="sidebar" [class.collapsed]="!isExpanded">
+      <mat-nav-list class="sidebar-nav">
+        <a mat-list-item routerLink="/events" routerLinkActive="active" 
+           [matTooltip]="!isExpanded ? 'Events' : null" 
+           matTooltipPosition="right">
+          <mat-icon matListItemIcon>event</mat-icon>
+          <span matListItemTitle *ngIf="isExpanded">Events</span>
+        </a>
+        <a mat-list-item routerLink="/groups" routerLinkActive="active" 
+           [matTooltip]="!isExpanded ? 'Groups' : null" 
+           matTooltipPosition="right">
+          <mat-icon matListItemIcon>groups</mat-icon>
+          <span matListItemTitle *ngIf="isExpanded">Groups</span>
+        </a>
+        <a mat-list-item routerLink="/resources" routerLinkActive="active" 
+           [matTooltip]="!isExpanded ? 'Resources' : null" 
+           matTooltipPosition="right">
+          <mat-icon matListItemIcon>library_books</mat-icon>
+          <span matListItemTitle *ngIf="isExpanded">Resources</span>
+        </a>
+      </mat-nav-list>
+    </div>
+    
+    <div class="main-content">
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

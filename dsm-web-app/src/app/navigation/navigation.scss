@@ -1,0 +1,121 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.top-header {
+  background-color: #1976d2;
+  color: white;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  z-index: 1;
+  position: relative;
+}
+
+.sidebar-section {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  transition: width 0.3s ease;
+  
+  &.collapsed {
+    width: 64px;
+    justify-content: flex-start;
+    padding: 0 16px;
+  }
+}
+
+.sidebar-title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.menu-button {
+  color: white;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.main-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.app-title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.body-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #f5f5f5;
+  border-right: 1px solid #e0e0e0;
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  
+  &.collapsed {
+    width: 64px;
+  }
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 8px 0;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.active {
+  background-color: rgba(25, 118, 210, 0.1);
+  color: #1976d2;
+}
+
+mat-nav-list a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 16px;
+  transition: background-color 0.2s ease;
+}
+
+mat-nav-list a:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+// Collapsed state styles
+.sidebar.collapsed {
+  .sidebar-nav a {
+    justify-content: center;
+    padding: 0 8px;
+  }
+  
+  mat-icon {
+    margin: 0;
+  }
+}

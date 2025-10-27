@@ -1,0 +1,58 @@
+<div class="events-container">
+  <div class="events-header">
+    <h1>Upcoming Events</h1>
+    <p>Discover tech events happening in the Des Moines area.</p>
+  </div>
+  
+  <div class="events-list">
+    <mat-card *ngFor="let event of events$ | async" class="event-card">
+      <mat-card-content>
+        <div class="event-content">
+          <div class="event-date">
+            <mat-icon class="calendar-icon">event</mat-icon>
+            <div class="date-info">
+              <div class="date">{{ event.date | date:'MMM d' }}</div>
+              <div class="time">{{ event.time }}</div>
+            </div>
+          </div>
+          
+          <div class="event-details">
+            <h3 class="event-title">{{ event.title }}</h3>
+            <div class="event-group">
+              <mat-icon class="group-icon">groups</mat-icon>
+              <span>{{ event.group }}</span>
+            </div>
+            <div class="event-location">
+              <mat-icon class="location-icon">location_on</mat-icon>
+              <span>{{ event.location }}</span>
+            </div>
+            <div class="event-url" *ngIf="event.url">
+              <mat-icon class="link-icon">link</mat-icon>
+              <a [href]="event.url" target="_blank" rel="noopener">Event Details</a>
+            </div>
+          </div>
+          
+          <div class="event-actions">
+            <button mat-icon-button 
+                    (click)="editEvent(event.id)" 
+                    class="edit-button"
+                    matTooltip="Edit Event"
+                    matTooltipPosition="left">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  <!-- Floating Action Button -->
+  <button mat-fab 
+          class="fab-add-event" 
+          color="primary" 
+          (click)="navigateToAddEvent()"
+          matTooltip="Add New Event"
+          matTooltipPosition="left">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
