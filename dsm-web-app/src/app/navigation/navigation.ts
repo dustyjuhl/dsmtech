@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
@@ -24,9 +24,21 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navigation.scss',
 })
 export class Navigation {
-  isExpanded = true;
+  isExpanded = false; // Sidebar is collapsed by default
+
+  constructor(private renderer: Renderer2) {}
 
   toggleSidebar() {
     this.isExpanded = !this.isExpanded;
+    const sidebar = document.querySelector('.sidebar') as HTMLElement;
+    const bodyContainer = document.querySelector('.body-container') as HTMLElement;
+
+    if (this.isExpanded) {
+      this.renderer.setStyle(sidebar, 'width', '250px');
+      this.renderer.setStyle(bodyContainer, 'margin-left', '250px');
+    } else {
+      this.renderer.setStyle(sidebar, 'width', '64px');
+      this.renderer.setStyle(bodyContainer, 'margin-left', '64px');
+    }
   }
 }
