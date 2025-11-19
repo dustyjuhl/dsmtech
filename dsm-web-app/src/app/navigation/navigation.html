@@ -1,16 +1,11 @@
 <div class="app-container">
   <div class="top-header">
-    <div class="sidebar-section" [class.collapsed]="!isExpanded">
-      <button mat-icon-button (click)="toggleSidebar()" class="menu-button">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span *ngIf="isExpanded" class="sidebar-title">Menu</span>
-    </div>
-    <div class="main-section">
-      <span class="app-title">DSM Tech Community</span>
-    </div>
+    <button mat-icon-button (click)="toggleSidebar()" class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="app-title">DSM Tech Community</span>
   </div>
-  
+
   <div class="body-container">
     <div class="sidebar" [class.collapsed]="!isExpanded">
       <mat-nav-list class="sidebar-nav">
@@ -34,7 +29,7 @@
         </a>
       </mat-nav-list>
     </div>
-    
+
     <div class="main-content">
       <div class="content">
         <router-outlet></router-outlet>
