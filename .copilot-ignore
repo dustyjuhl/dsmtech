@@ -1,0 +1,4 @@
+# .copilot-ignore
+# This file tells Copilot which files/folders to keep when cleaning the workspace.
+# Only keep the instructions file.
+copilot-instructions.md
