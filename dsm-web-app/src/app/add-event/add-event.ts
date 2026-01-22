@@ -52,6 +52,7 @@ export class AddEvent {
     if (this.eventForm.valid) {
       const eventData = this.eventForm.value;
       console.log('New event data:', eventData);
+      console.log('Event date type:', typeof eventData.date, eventData.date);
       
       // Save the event using the service
       this.eventsService.addEvent(eventData);

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface Event {
   id: number;
@@ -25,7 +26,7 @@ export class EventsService {
       group: 'Des Moines Angular',
       location: 'Principal Financial Group, 801 Grand Ave, Des Moines, IA',
       url: 'https://meetup.com/des-moines-angular',
-      date: new Date('2024-02-15'),
+      date: new Date('2026-02-15'),
       time: '6:00 PM - 8:00 PM',
       description: 'Learn about advanced Angular component patterns and best practices.',
       speaker: 'John Smith'
@@ -36,7 +37,7 @@ export class EventsService {
       group: 'Des Moines React',
       location: 'Tech Hub, 123 Innovation Way, Des Moines, IA',
       url: 'https://meetup.com/des-moines-react',
-      date: new Date('2024-02-20'),
+      date: new Date('2026-02-20'),
       time: '7:00 PM - 9:00 PM',
       description: 'Deep dive into React hooks and modern patterns.',
       speaker: 'Sarah Johnson'
@@ -47,7 +48,7 @@ export class EventsService {
       group: 'Central Iowa DevOps',
       location: 'Virtual Event',
       url: 'https://zoom.us/j/123456789',
-      date: new Date('2024-02-25'),
+      date: new Date('2026-02-25'),
       time: '12:00 PM - 1:00 PM',
       description: 'Learn about modern DevOps practices and tools.',
       speaker: 'Mike Chen'
@@ -58,7 +59,7 @@ export class EventsService {
       group: 'Des Moines Python',
       location: 'Iowa State University, Ames, IA',
       url: 'https://meetup.com/des-moines-python',
-      date: new Date('2024-03-01'),
+      date: new Date('2026-03-01'),
       time: '6:30 PM - 8:30 PM',
       description: 'Exploring data science with Python and pandas.',
       speaker: 'Dr. Lisa Wang'
@@ -71,7 +72,18 @@ export class EventsService {
   constructor() { }
 
   getEvents(): Observable<Event[]> {
-    return this.events$;
+    return this.events$.pipe(
+      map(events => {
+        const sorted = [...events].sort((a, b) => {
+          const dateA = new Date(a.date).getTime();
+          const dateB = new Date(b.date).getTime();
+          console.log('Comparing:', a.title, dateA, 'vs', b.title, dateB);
+          return dateA - dateB;
+        });
+        console.log('Sorted events:', sorted.map(e => ({ title: e.title, date: e.date })));
+        return sorted;
+      })
+    );
   }
 
   addEvent(event: Omit<Event, 'id'>): void {
@@ -79,8 +91,11 @@ export class EventsService {
     const newId = Math.max(...currentEvents.map(e => e.id)) + 1;
     const newEvent: Event = {
       ...event,
-      id: newId
+      id: newId,
+      date: new Date(event.date) // Ensure date is a Date object
     };
+    
+    console.log('Adding event with date:', newEvent.date, typeof newEvent.date);
     
     const updatedEvents = [...currentEvents, newEvent];
     this.eventsSubject.next(updatedEvents);
