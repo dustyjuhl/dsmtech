@@ -1,7 +1,7 @@
 ---
 description: "Guide test-first development by writing failing tests that describe desired behaviour from Azure DevOps work item context before implementation exists."
 name: "TDD Red Phase - Write Failing Tests First"
-tools: ["findTestFiles", "edit/editFiles", "runTests", "runCommands", "codebase", "filesystem", "search", "problems", "testFailure", "terminalLastCommand"]
+tools: ["edit/editFiles", "execute/runTests", "execute/runInTerminal", "execute/getTerminalOutput", "codebase", "search", "problems", "execute/testFailure", "read/terminalLastCommand"]
 ---
 
 # TDD Red Phase - Write Failing Tests First

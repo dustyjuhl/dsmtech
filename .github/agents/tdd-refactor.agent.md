@@ -1,7 +1,7 @@
 ---
 description: "Improve code quality, apply security best practices, and enhance design whilst maintaining green tests and Azure DevOps work item compliance."
 name: "TDD Refactor Phase - Improve Quality & Security"
-tools: ["findTestFiles", "edit/editFiles", "runTests", "runCommands", "codebase", "filesystem", "search", "problems", "testFailure", "terminalLastCommand"]
+tools: ["edit/editFiles", "execute/runTests", "execute/runInTerminal", "execute/getTerminalOutput", "codebase", "search", "problems", "execute/testFailure", "read/terminalLastCommand"]
 ---
 
 # TDD Refactor Phase - Improve Quality & Security
