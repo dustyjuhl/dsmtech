@@ -1,0 +1,141 @@
+<div class="add-group-container">
+  <div class="add-group-header">
+    <button mat-icon-button (click)="goBack()" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Add New Group</h1>
+  </div>
+  
+  <form [formGroup]="groupForm" (ngSubmit)="onSubmit()" class="group-form">
+    <mat-card class="form-card">
+      <mat-card-content>
+        <div class="form-fields">
+          <!-- Logo Upload Section -->
+          <div class="logo-upload-section">
+            <label class="logo-upload-label">Group Logo</label>
+            <div class="logo-upload-container">
+              <div class="logo-preview" *ngIf="logoPreview">
+                <img [src]="logoPreview" alt="Logo preview" class="logo-preview-image">
+                <button type="button" mat-icon-button class="remove-logo-button" (click)="removeLogo()" matTooltip="Remove logo">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+              <div class="logo-placeholder" *ngIf="!logoPreview">
+                <mat-icon class="logo-placeholder-icon">image</mat-icon>
+                <span class="logo-placeholder-text">No logo selected</span>
+              </div>
+              <input 
+                type="file" 
+                id="logo-upload"
+                accept="image/*" 
+                (change)="onFileSelected($event)"
+                class="logo-file-input"
+                #fileInput>
+              <button 
+                type="button" 
+                mat-raised-button 
+                color="primary"
+                (click)="fileInput.click()"
+                class="upload-button">
+                <mat-icon>upload</mat-icon>
+                <span>{{ logoPreview ? 'Change Logo' : 'Upload Logo' }}</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Basic Information -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Group Name</mat-label>
+            <input matInput formControlName="name" placeholder="Enter group name" required>
+            <mat-error *ngIf="groupForm.get('name')?.hasError('required')">
+              Group name is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Location</mat-label>
+            <input matInput formControlName="location" placeholder="Enter group location" required>
+            <mat-error *ngIf="groupForm.get('location')?.hasError('required')">
+              Location is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" rows="4" placeholder="Enter group description" required></textarea>
+            <mat-error *ngIf="groupForm.get('description')?.hasError('required')">
+              Description is required
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Social Media Links Section -->
+          <div class="social-media-section">
+            <h3 class="section-title">Social Media Links (Optional)</h3>
+            <div class="social-media-fields">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Discord</mat-label>
+                <span matPrefix class="social-icon-prefix" [innerHTML]="getSocialMediaIcon('discord')"></span>
+                <input matInput formControlName="discord" placeholder="https://discord.gg/invite-code" type="url">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Facebook</mat-label>
+                <span matPrefix class="social-icon-prefix" [innerHTML]="getSocialMediaIcon('facebook')"></span>
+                <input matInput formControlName="facebook" placeholder="https://facebook.com/group" type="url">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>GitHub</mat-label>
+                <span matPrefix class="social-icon-prefix" [innerHTML]="getSocialMediaIcon('github')"></span>
+                <input matInput formControlName="github" placeholder="https://github.com/group-name" type="url">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>LinkedIn</mat-label>
+                <span matPrefix class="social-icon-prefix" [innerHTML]="getSocialMediaIcon('linkedin')"></span>
+                <input matInput formControlName="linkedin" placeholder="https://linkedin.com/groups/group-name" type="url">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Meetup</mat-label>
+                <mat-icon matPrefix>event</mat-icon>
+                <input matInput formControlName="meetup" placeholder="https://meetup.com/group-name" type="url">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Slack</mat-label>
+                <span matPrefix class="social-icon-prefix" [innerHTML]="getSocialMediaIcon('slack')"></span>
+                <input matInput formControlName="slack" placeholder="https://group.slack.com" type="url">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Twitter</mat-label>
+                <span matPrefix class="social-icon-prefix" [innerHTML]="getSocialMediaIcon('twitter')"></span>
+                <input matInput formControlName="twitter" placeholder="https://twitter.com/group" type="url">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Website</mat-label>
+                <mat-icon matPrefix>language</mat-icon>
+                <input matInput formControlName="website" placeholder="https://example.com" type="url">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>YouTube</mat-label>
+                <span matPrefix class="social-icon-prefix" [innerHTML]="getSocialMediaIcon('youtube')"></span>
+                <input matInput formControlName="youtube" placeholder="https://youtube.com/@group-name" type="url">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      
+      <mat-card-actions class="form-actions">
+        <button mat-button type="button" (click)="goBack()">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!groupForm.valid">
+          Save
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

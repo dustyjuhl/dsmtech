@@ -1,0 +1,209 @@
+.edit-group-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.edit-group-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+  gap: 16px;
+  
+  h1 {
+    color: #1976d2;
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 300;
+  }
+}
+
+.back-button {
+  color: #1976d2;
+}
+
+.form-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logo-upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.logo-upload-label {
+  font-weight: 500;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.logo-upload-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.logo-preview {
+  position: relative;
+  display: inline-block;
+}
+
+.logo-preview-image {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  background-color: #f8f9fa;
+  padding: 8px;
+}
+
+.remove-logo-button {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #f44336;
+  color: white;
+  width: 32px;
+  height: 32px;
+  
+  mat-icon {
+    color: white;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  &:hover {
+    background-color: #d32f2f;
+  }
+}
+
+.logo-placeholder {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  gap: 8px;
+}
+
+.logo-placeholder-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: #999;
+}
+
+.logo-placeholder-text {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.logo-file-input {
+  display: none;
+}
+
+.upload-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social-media-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 8px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.section-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.social-media-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.social-icon-prefix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  // Add left margin to match Material icon spacing from border
+  margin-left: 16px;
+  // Add right margin to match Material icon spacing to input text
+  margin-right: 12px;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    display: block;
+  }
+}
+
+// Match Material icon spacing in form fields
+// Material icons with matPrefix have default spacing that we need to replicate
+::ng-deep {
+  .mat-mdc-form-field {
+    .mat-mdc-form-field-prefix {
+      // Remove default padding-right since we're using margin on the icon itself
+      padding-right: 0;
+      
+      // Ensure Material icons maintain their default spacing
+      mat-icon {
+        margin-right: 12px;
+      }
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 16px 24px;
+  margin: 0;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .form-actions {
+    flex-direction: column;
+    
+    button {
+      width: 100%;
+    }
+  }
+  
+  .logo-preview-image,
+  .logo-placeholder {
+    width: 100px;
+    height: 100px;
+  }
+}

@@ -1,4 +1,105 @@
 <div class="groups-container">
-  <h1>Tech Groups</h1>
-  <p>Connect with local technology user groups and communities.</p>
+  <div class="groups-header">
+    <h1>Tech Groups</h1>
+    <p>Connect with local technology user groups and communities.</p>
+  </div>
+  
+  <div class="groups-table-container">
+    <table mat-table [dataSource]="(groups$ | async) || []" class="groups-table">
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let group">
+          <div class="group-name-cell">
+            <div class="group-logo-container">
+              <img *ngIf="group.logoUrl && !logoErrorMap.get(group.id)" 
+                   [src]="group.logoUrl" 
+                   [alt]="group.name + ' logo'"
+                   class="group-logo"
+                   (error)="onLogoError($event, group.id)">
+              <mat-icon *ngIf="!group.logoUrl || logoErrorMap.get(group.id)" 
+                        class="group-logo-placeholder">groups</mat-icon>
+            </div>
+            <div class="group-name-info">
+              <div class="group-name">{{ group.name }}</div>
+              <div class="group-location">
+                <mat-icon class="location-icon">location_on</mat-icon>
+                <span>{{ group.location }}</span>
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let group">
+          <div class="group-description">{{ group.description }}</div>
+        </td>
+      </ng-container>
+
+      <!-- Social Media Column -->
+      <ng-container matColumnDef="socialMedia">
+        <th mat-header-cell *matHeaderCellDef>Social Media</th>
+        <td mat-cell *matCellDef="let group">
+          <div class="social-media-icons">
+            <a *ngFor="let platform of getSocialMediaKeys(group.socialMedia)"
+               [href]="group.socialMedia![platform]"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="social-icon-link"
+               [matTooltip]="platform.charAt(0).toUpperCase() + platform.slice(1)">
+              <span *ngIf="getSocialMediaIcon(platform)" class="social-icon" [innerHTML]="getSocialMediaIcon(platform)"></span>
+              <mat-icon *ngIf="!getSocialMediaIcon(platform)" 
+                        class="social-icon material-icon"
+                        [class.github-icon]="platform === 'github'">{{ getMaterialIcon(platform) }}</mat-icon>
+            </a>
+            <span *ngIf="!group.socialMedia || getSocialMediaKeys(group.socialMedia).length === 0" 
+                  class="no-social-media">—</span>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Details Column -->
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef class="details-header">Details</th>
+        <td mat-cell *matCellDef="let group" class="details-cell">
+          <button mat-raised-button 
+                  color="primary"
+                  (click)="viewGroupDetails(group.id)"
+                  class="details-button">
+            Details
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Edit Column -->
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let group">
+          <button mat-icon-button 
+                  color="primary"
+                  (click)="editGroup(group.id)"
+                  matTooltip="Edit Group"
+                  class="edit-button">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  
+  <!-- Floating Action Button -->
+  <button mat-fab 
+          class="fab-add-group" 
+          color="primary" 
+          (click)="navigateToAddGroup()"
+          matTooltip="Add New Group"
+          matTooltipPosition="left">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
