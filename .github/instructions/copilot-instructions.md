@@ -6,6 +6,17 @@ This file contains instructions for AI coding assistants working on this project
 
 This is a web application built with Angular, focusing on displaying tech groups and events in the Des Moines area.
 
+## Table of Contents
+
+1. [Key Technologies](#key-technologies)
+2. [Project Structure](#project-structure)
+3. [Important Patterns](#important-patterns)
+4. [Styling Guidelines](#styling-guidelines)
+5. [Data Management](#data-management)
+6. [Testing](#testing)
+7. [AI Agent Instructions & Configuration](#ai-agent-instructions--configuration)
+8. [Development Workflow](#development-workflow)
+
 ## Key Technologies
 
 - **Angular** (Standalone Components)
