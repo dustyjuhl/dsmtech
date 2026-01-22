@@ -1,7 +1,7 @@
 ---
 description: "Testing mode for Playwright E2E tests in Angular application"
 name: "Playwright Tester Mode"
-tools: ["changes", "codebase", "edit/editFiles", "fetch", "findTestFiles", "problems", "runCommands", "runTasks", "runTests", "search", "searchResults", "terminalLastCommand", "terminalSelection", "testFailure", "playwright"]
+tools: ["search/changes", "codebase", "edit/editFiles", "web/fetch", "problems", "execute/getTerminalOutput", "execute/runInTerminal", "execute/createAndRunTask", "execute/runTask", "read/getTaskOutput", "execute/runTests", "search", "search/searchResults", "read/terminalLastCommand", "read/terminalSelection", "execute/testFailure", "playwright/*"]
 model: Claude Sonnet 4.5
 ---
 

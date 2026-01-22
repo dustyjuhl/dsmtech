@@ -46,6 +46,7 @@
     "@angular/compiler-cli": "^20.3.0",
     "@playwright/test": "^1.56.1",
     "@types/jest": "^29.5.0",
+    "@types/node": "^25.0.10",
     "jest": "^30.0.0",
     "jest-preset-angular": "^15.0.0",
     "typescript": "~5.9.2"

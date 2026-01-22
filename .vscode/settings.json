@@ -1,3 +1,4 @@
 {
-  "terminal.integrated.cwd": "${workspaceFolder}/dsm-web-app"
+  "terminal.integrated.cwd": "${workspaceFolder}/dsm-web-app",
+  "markdown.validate.fragmentLinks": "ignore"
 }

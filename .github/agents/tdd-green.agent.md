@@ -1,7 +1,7 @@
 ---
 description: 'Implement minimal code to satisfy Azure DevOps work item requirements and make failing tests pass without over-engineering.'
 name: 'TDD Green Phase - Make Tests Pass Quickly'
-tools: ['findTestFiles', 'edit/editFiles', 'runTests', 'runCommands', 'codebase', 'filesystem', 'search', 'problems', 'testFailure', 'terminalLastCommand']
+tools: ['edit/editFiles', 'execute/runTests', 'execute/runInTerminal', 'execute/getTerminalOutput', 'codebase', 'search', 'problems', 'execute/testFailure', 'read/terminalLastCommand']
 ---
 # TDD Green Phase - Make Tests Pass Quickly
 
